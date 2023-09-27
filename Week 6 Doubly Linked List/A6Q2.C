@@ -1,109 +1,88 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-struct Node
+struct node
 {
-    struct Node *prev;
     int data;
-    struct Node *next;
+    struct node *pre;
+    struct node *next;
 };
-
-struct Node *insertAtEnd(struct Node *head)
+void linked_display(struct node *current)
 {
-    struct Node *new;
-    new = (struct Node *)malloc(sizeof(struct Node));
-    new->prev = NULL;
-    printf("Enter Data : ");
-    scanf("%d", &new->data);
-    new->next = NULL;
-
-    if (head == NULL)
+    printf("NULL <-> ");
+    while (current != NULL)
     {
-        return new;
+        printf("%d <-> ", current->data);
+        current = current->next;
     }
-
-    struct Node *temp = head;
-
+    printf("NULL\n");
+}
+struct node *insertatend(struct node *head)
+{
+    struct node *temp = head;
+    struct node *new = (struct node *)malloc(sizeof(struct node));
+    printf("Enter Data for Next node : ");
+    scanf("%d", &new->data);
     while (temp->next != NULL)
     {
         temp = temp->next;
     }
-
+    new->pre = temp;
+    new->next = NULL;
     temp->next = new;
-    new->prev = temp;
-
     return head;
 }
-
-void showLinkList(struct Node *ptr)
+struct node *delete(struct node *head)
 {
-    if (ptr == NULL)
+    struct node *current = head;
+    struct node *temp;
+    int value;
+    printf("Enter  Data value of Node which you want to delete: ");
+    scanf("%d", &value);
+    while (current != NULL)
     {
-        printf("\n\nLinked list is Empty.");
-    }
-    else
-    {
-        printf("\nDouble-Link List contains : \nNULL");
-        while (ptr != NULL)
+        if (current->data == value)
         {
-            printf("<->%d", ptr->data);
-            ptr = ptr->next;
-        }
-        printf("<->NULL");
-    }
-}
-
-struct Node *delete(struct Node *head)
-{
-    struct Node *temp = head;
-    
-    while (temp != NULL)
-    {
-        if (temp->data == 30)
-        {
-            if (temp->prev == NULL)
+            if (current->pre == NULL)
             {
-                head = temp->next;
+                head = current->next;
                 if (head != NULL)
                 {
-                    head->prev = NULL;
+                    head->pre = NULL;
                 }
-                free(temp);
-                temp = head;
-                // return head;
             }
-
             else
             {
-                struct Node *prevNode = temp->prev;
-                struct Node *nextNode = temp->next;
-                prevNode->next = nextNode;
-                if (nextNode != NULL)
+                current->pre->next = current->next;
+                if (current->next != NULL)
                 {
-                    nextNode->prev = prevNode;
+                    current->next->pre = current->pre;
                 }
-                temp = temp->next;
             }
+            temp = current;
+            current = current->next;
+            free(temp);
         }
         else
         {
-            temp = temp->next;
+            current = current->next;
         }
     }
     return head;
 }
-
 int main()
 {
-    struct Node *head = NULL;
-
-    for (int i = 0; i < 6; i++)
-    {
-        head = insertAtEnd(head);
-    }
-
-    head = delete(head);
-    showLinkList(head);
-
-    return 0;
+    struct node *head = (struct node *)malloc(sizeof(struct node));
+    head->pre = NULL;
+    printf("Enter Data for Initial node: ");
+    scanf("%d", &head->data);
+    head->next = NULL;
+    head = insertatend(head);
+    head = insertatend(head);
+    head = insertatend(head);
+    head = insertatend(head);
+    printf("Your Nodes are : ");
+    linked_display(head);
+    head = delete (head);
+    printf("Nodes After Deletion : ");
+    linked_display(head);
 }
