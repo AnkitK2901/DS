@@ -239,7 +239,7 @@ int main()
 }
 
 */
-
+/*
 #include<stdio.h>
 #include<stdlib.h>
 struct link
@@ -356,3 +356,4 @@ struct link * insertAtFirst(struct link *node)
     
 	return node; 
 }	
+*/
