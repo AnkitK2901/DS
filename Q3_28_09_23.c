@@ -58,7 +58,7 @@ void merge(struct node1 *head1, struct node2 *head2)
     {
         temp = temp->next1;
     }
-    temp->next1 = head2;
+    temp->next1 = (struct node1 *)head2;
 }
 struct node1 *showLinkList1(struct node1 *ptr)
 {
