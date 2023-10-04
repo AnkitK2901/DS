@@ -16,16 +16,16 @@ struct Node *createNode(int data)
 }
 struct Node *insertAtStart(struct Node *head, int data)
 {
-    struct Node *newNode = createNode(data);  
+    struct Node *newNode = createNode(data);
     if (head == NULL)
     {
         head = newNode;
         return head;
-    }    
-    struct Node * temp = head;
-    head=newNode;
-    newNode->next=temp;
-    temp->prev=newNode;
+    }
+    struct Node *temp = head;
+    head = newNode;
+    newNode->next = temp;
+    temp->prev = newNode;
     return head;
 }
 struct Node *reverseDoublyLinkedList(struct Node *head)
@@ -56,12 +56,13 @@ void printList(struct Node *head)
 }
 int main()
 {
-    struct Node *head = NULL; int data;
+    struct Node *head = NULL;
+    int data;
     for (int i = 0; i < 5; i++)
     {
         printf("Enter data : ");
         scanf("%d", &data);
-        head = insertAtStart(head,data);
+        head = insertAtStart(head, data);
     }
     printf("Original Doubly Linked List: ");
     printList(head);
