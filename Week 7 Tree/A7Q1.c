@@ -24,7 +24,8 @@ struct TreeNode* insert(struct TreeNode* root, char* day)
     if (cmp < 0) 
     {
         root->left = insert(root->left, day);
-    } else if (cmp > 0) 
+    } 
+    else if (cmp > 0) 
     {
         root->right = insert(root->right, day);
     }
@@ -40,8 +41,7 @@ void inOrderTraversal(struct TreeNode* root)
     }
 }
 int main() 
-{
- 
+{ 
     char* days[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};    
     struct TreeNode* root = NULL;
     for (int i = 0; i < 7; i++) 
