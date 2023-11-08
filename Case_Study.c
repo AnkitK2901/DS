@@ -69,6 +69,7 @@ int main()
 }
 void create_account()
 {
+    int type;
     Account account;
     FILE *fp;
     fp = fopen(FILE_NAME, "ab+");
@@ -81,15 +82,32 @@ void create_account()
     int total_accounts = ftell(fp) / sizeof(Account);
     account.account_no = total_accounts + 1;
     printf("\n\n\t\t\tEnter name: ");
-    scanf("%s", account.name);
+    scanf(" %[^\n]", account.name);
     printf("\n\t\t\tEnter email: ");
     scanf("%s", account.email);
     printf("\n\t\t\tEnter phone: ");
     scanf("%s", account.phone);
-    printf("\n\t\t\tEnter account type (Savings/Current): ");
-    scanf("%s", account.account_type);
+    do
+    {
+        printf("\n\t\t\tEnter account type \n\t\t\t1.Savings\n\t\t\t2.Current :");
+        scanf("%d", &type);
+        if (type == 1)
+        {
+            strcpy(account.account_type, "Savings");
+            break;
+        }
+        else if (type == 2)
+        {
+            strcpy(account.account_type, "Current");
+            break;
+        }
+        else
+        {
+            printf("Invalid!!");
+        }
+    } while (type == 1 || type == 2);
     printf("\n\t\t\tEnter address: ");
-    scanf("%s", account.address);
+    scanf(" %[^\n]", account.address);
     printf("\n\t\t\tEnter date of birth (dd/mm/yyyy): ");
     scanf("%s", account.dob);
     printf("\n\t\t\tEnter Aadhar number: ");
