@@ -1,11 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 #define FILE_NAME "bank_data.txt"
 #define BANK_NAME "SBI"
 #define IFSC_CODE "SBIN0007507"
-
 typedef struct
 {
     char name[50];
@@ -19,14 +17,12 @@ typedef struct
     int account_no;
     float balance;
 } Account;
-
 void create_account();
 void update_account();
 void transaction();
 void check_account_details();
 void remove_account();
 void view_customer_list();
-
 int main()
 {
     int choice;
@@ -71,7 +67,6 @@ int main()
     } while (1);
     return 0;
 }
-
 void create_account()
 {
     Account account;
@@ -107,7 +102,6 @@ void create_account()
     printf("\n\n\t\t\tAccount created successfully!");
     printf("\n\t\t\tAccount number: %d", account.account_no);
 }
-
 void update_account()
 {
     int account_no, choice;
@@ -182,7 +176,6 @@ void update_account()
     printf("\n\n\t\t\tAccount not found!");
     fclose(fp);
 }
-
 void transaction()
 {
     int account_no, choice;
@@ -237,7 +230,6 @@ void transaction()
     printf("\n\n\t\t\tAccount not found!");
     fclose(fp);
 }
-
 void check_account_details()
 {
     int account_no;
@@ -273,7 +265,6 @@ void check_account_details()
     printf("\n\n\t\t\tAccount not found!");
     fclose(fp);
 }
-
 void remove_account()
 {
     int account_no;
@@ -307,7 +298,6 @@ void remove_account()
     rename("temp.txt", FILE_NAME);
     printf("\n\n\t\t\tAccount removed successfully!");
 }
-
 void view_customer_list()
 {
     FILE *fp;
