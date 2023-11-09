@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #define FILE_NAME "bank_data.txt"
-typedef struct
+typedef struct 
 {
     char name[50];
     char email[50];
