@@ -17,7 +17,6 @@ void selectionSort(char arr[][MAX_LENGTH], int n, int passCount[])
         strcpy(temp, arr[minIndex]);
         strcpy(arr[minIndex], arr[i]);
         strcpy(arr[i], temp);
-
         passCount[i] = minIndex + 1;
     }
 }
