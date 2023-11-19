@@ -1,41 +1,34 @@
 #include <stdio.h>
-int linearSearch(int arr[], int n, int ele)
+#include <stdlib.h>
+void findTheMissing()
 {
-    for (int i = 0; i < n; i++)
+    int arr1[] = {7, 2, 5, 3, 5};
+    int arr2[] = {7, 2, 5, 4, 3, 6, 5};
+    int cnt = 0;
+    int size_arr1 = sizeof(arr1) / sizeof(int);
+    int size_arr2 = sizeof(arr2) / sizeof(int);
+    for (int i = 0; i < size_arr2; i++)
     {
-        if (arr[i] == ele)
+        cnt = 0;
+        for (int j = 0; j < size_arr1; j++)
         {
-            return 1; 
+            if (arr2[i] == arr1[j])
+            {
+                cnt++;
+            }
+        }
+        if (cnt == 0)
+        {
+            printf("Missing : %d\n", arr2[i]);
         }
     }
-    return 0; 
+    if (cnt != 0)
+    {
+        printf("\nAll Available.\n");
+    }
 }
 int main()
 {
-    int n, m;
-    printf("Enter the size of the first list (n): ");
-    scanf("%d", &n);
-    int arr1[n];
-    printf("Enter %d space-separated integers for arr1:\n", n);
-    for (int i = 0; i < n; i++)
-    {
-        scanf("%d", &arr1[i]);
-    }
-    printf("Enter the size of the second list (m): ");
-    scanf("%d", &m);
-    int arr2[m];
-    printf("Enter %d space-separated integers for arr2:\n", m);
-    for (int i = 0; i < m; i++)
-    {
-        scanf("%d", &arr2[i]);
-    }
-    printf("The numbers missing are: ");
-    for (int i = 0; i < m; i++)
-    {
-        if (!linearSearch(arr1, n, arr2[i]))
-        {
-            printf("%d ", arr2[i]);
-        }
-    }
+    findTheMissing();
     return 0;
 }
