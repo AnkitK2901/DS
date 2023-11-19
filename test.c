@@ -415,3 +415,74 @@ int main()
     printf("\n");
     return 0;
 }*/
+
+
+/*
+#include<stdio.h>
+# define [size]
+size =10;
+int front=-1;
+int rear=-1;
+void enqueue(data)
+{
+    if(rear==-1&&front==0)
+    {
+        printf("overflow");
+    }
+    elseif(front==-1&&rear==-1)
+    {
+        front=rear=0;
+        queue[rear]=data;
+    }
+    elseif(rear==size-1&&front!=0)
+    {
+        rear=0;
+        queue[rear]=data;
+    }
+    else
+    {
+        rear++;
+        queue[rear]=data;
+    }
+} 
+void dequeue()
+{
+    if(front==-1&&rear==-1)
+    {
+        printf("underflow");
+        return -1;
+    }
+    value=queue[front];
+    elseif(front==rear)
+    {
+        front=rear=-1;
+        value=queue[front];
+    }
+    else
+    {
+        if(front==size-1)
+        {
+            front=0;
+        }
+        else
+        {
+            front++;
+        }
+    }
+}
+void traversal()
+{
+    if(front==-1&&rear==-1)
+    {
+        prntf("Underflow");
+    }
+    else
+    {
+        for(int i=0;i<=rear;i++)
+        {
+            printf("The Queue elements are:")
+            queue[data];
+        }
+    }
+}
+*/
