@@ -1,5 +1,6 @@
 #include <stdio.h>
-int findFirstOccurrence(int arr[], int n, int ele)
+#include <stdlib.h>
+int binarySearch(int arr[], int n, int ele, int findFirst)
 {
     int low = 0, high = n - 1, result = -1;
     while (low <= high)
@@ -8,7 +9,10 @@ int findFirstOccurrence(int arr[], int n, int ele)
         if (arr[mid] == ele)
         {
             result = mid;
-            high = mid - 1; 
+            if (findFirst)
+                high = mid - 1;
+            else
+                low = mid + 1;
         }
         else if (arr[mid] < ele)
         {
@@ -21,37 +25,9 @@ int findFirstOccurrence(int arr[], int n, int ele)
     }
     return result;
 }
-int findLastOccurrence(int arr[], int n, int ele)
+int compare(const void *a, const void *b)
 {
-    int low = 0, high = n - 1, result = -1;
-    while (low <= high)
-    {
-        int mid = low + (high - low) / 2;
-        if (arr[mid] == ele)
-        {
-            result = mid;
-            low = mid + 1; 
-        }
-        else if (arr[mid] < ele)
-        {
-            low = mid + 1;
-        }
-        else
-        {
-            high = mid - 1;
-        }
-    }
-    return result;
-}
-int findElementCount(int arr[], int n, int ele)
-{
-    int firstOccurrence = findFirstOccurrence(arr, n, ele);
-    int lastOccurrence = findLastOccurrence(arr, n, ele);
-    if (firstOccurrence == -1)
-    {
-        return -1;
-    }
-    return lastOccurrence - firstOccurrence + 1;
+    return (*(int *)a - *(int *)b);
 }
 int main()
 {
@@ -64,7 +40,7 @@ int main()
         return 0;
     }
     int arr[N];
-    printf("Enter the sorted array elements:\n");
+    printf("Enter the array elements:\n");
     for (int i = 0; i < N; i++)
     {
         scanf("%d", &arr[i]);
@@ -72,16 +48,16 @@ int main()
     int ele;
     printf("Enter the element to search: ");
     scanf("%d", &ele);
-    int count = findElementCount(arr, N, ele);
-    if (count == -1)
+    qsort(arr, N, sizeof(int), compare);
+    int firstOccurrence = binarySearch(arr, N, ele, 1);
+    int lastOccurrence = binarySearch(arr, N, ele, 0);
+    if (firstOccurrence == -1)
     {
         printf("-1\n");
     }
     else
     {
-        int firstOccurrence = findFirstOccurrence(arr, N, ele);
-        int lastOccurrence = findLastOccurrence(arr, N, ele);
-        printf("%d %d %d\n", firstOccurrence, lastOccurrence, count);
+        printf("%d %d %d\n", firstOccurrence, lastOccurrence, lastOccurrence - firstOccurrence + 1);
     }
     return 0;
 }
