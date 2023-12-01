@@ -416,7 +416,6 @@ int main()
     return 0;
 }*/
 
-
 /*
 #include<stdio.h>
 # define [size]
@@ -444,7 +443,7 @@ void enqueue(data)
         rear++;
         queue[rear]=data;
     }
-} 
+}
 void dequeue()
 {
     if(front==-1&&rear==-1)
