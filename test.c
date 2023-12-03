@@ -29,6 +29,7 @@ int main(){
         printf("%d is present %d times in array.\n", array2[i], count);
 
     }
+    
 
 
     return 0;
